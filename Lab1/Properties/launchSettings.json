@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Lab1": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\Мария\\Desktop\\Lab1\\2_TestFile.csv OutputFile xls "
+    }
+  }
+}
