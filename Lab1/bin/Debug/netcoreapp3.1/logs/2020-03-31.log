@@ -1,8 +1,0 @@
-2020-03-31 00:16:36.2222 ERROR Read error: The conversion cannot be performed.
-    Text: ''
-    MemberType: 
-    TypeConverter: 'CsvHelper.TypeConversion.Int32Converter'
-2020-03-31 00:16:52.8940 ERROR Read error: Wrong number of parameters
-2020-03-31 00:17:03.6223 ERROR Read error: Wrong number of parameters
-2020-03-31 00:17:26.0112 ERROR Read error: Wrong number of parameters
-2020-03-31 00:21:02.3935 ERROR Read error: Wrong number of parameters
