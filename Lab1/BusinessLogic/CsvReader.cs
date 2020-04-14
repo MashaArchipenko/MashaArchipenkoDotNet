@@ -6,7 +6,7 @@ using System.IO;
 
 namespace Lab1.BusinessLogic
 {
-    class CsvReader : Interfaces.IReader
+    public class CsvReader : Interfaces.IReader
     {
         public IEnumerable<Student> ReadFile(string path)
         {

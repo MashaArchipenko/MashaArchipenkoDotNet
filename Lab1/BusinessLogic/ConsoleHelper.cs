@@ -10,38 +10,6 @@ namespace Lab1.BusinessLogic
 {
     public static class ConsoleHelper
     {
-        public static IEnumerable<Student> FindAverageMark(this IEnumerable<Student> students)
-        {
-            foreach (var student in students)
-                student.AverageMark = Math.Round(student.Subjects.Average(e => e.Mark),2);
-            return students;
-        }
-        public static double FindAverageGroupRating(IEnumerable<Student> students)
-        {
-            return Math.Round(students.Average(e => e.AverageMark), 2);
-        }
-        public static IEnumerable<StudentAverageMark> StudentToStudentAverageMark(IEnumerable<Student> students)
-        {
-            var resultList = new List<StudentAverageMark>();
-            foreach (var student in students)
-            {
-                resultList.Add(new StudentAverageMark(student.Name, student.Surname, student.Patronymic, student.AverageMark));
-            }
-            return resultList;
-        }
-        public static IEnumerable<Subject> FindAverageInAllSubjects(IEnumerable<Student> students)
-        {
-            var allMarks = new List<Subject>();
-            var averageMarks = new List<Subject>();
-
-            foreach (var student in students)
-                allMarks.AddRange(student.Subjects);
-
-            foreach (var subject in students.Last().Subjects)
-                averageMarks.Add(new Subject(subject.SubjectName,Math.Round(allMarks.Where(e => e.SubjectName.Equals(subject.SubjectName)).Average(e => e.Mark),2)));
-
-            return averageMarks;
-        }
         public static string DefineFormat(this string name)
         {
             var type = typeof(FileFormat);
@@ -53,21 +21,21 @@ namespace Lab1.BusinessLogic
         public static (IWriter,string[]) ChooseWriteFile(string[] line)
         {
             const int CommandCount = 3;
-            bool flag = false;
+            bool checkCorrectFormatFlag = false;
             IWriter writerFormat = null;
-            while (!flag)
+            while (!checkCorrectFormatFlag)
             {
                 if (line.Length == CommandCount)
                 {
                     if (line[(int)InputData.Format].Equals(DefineFormat(FileFormat.Excel.ToString())))
                     {
                         writerFormat = new ExcelWriter();
-                        flag = true;
+                        checkCorrectFormatFlag = true;
                     }
                     else if (line[(int)InputData.Format].Equals(FileFormat.Json.ToString().DefineFormat()))
                     {
                         writerFormat = new JsonWriter();
-                        flag = true;
+                        checkCorrectFormatFlag = true;
                     }
                     else
                     {
@@ -81,7 +49,7 @@ namespace Lab1.BusinessLogic
                     Console.WriteLine("'Input file name' 'Output file name' 'format'");
                     line = Console.ReadLine().Split();
                 }
-            }
+           }
             return (writerFormat,line);
         }
     }
